@@ -1,0 +1,17 @@
+;; No dependencies. An MQTT control packet is a fixed header (packet type,
+;; flags, a variable-length integer), a variable header of big-endian
+;; integers and length-prefixed strings, and a payload — none of it needs
+;; anything beyond core Clojure, and pulling in an MQTT client library to
+;; write a codec would defeat the point, which is a codec this workspace's
+;; other runtimes (cljs, nbb) can load without a JVM.
+{:paths ["src"]
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}
+  :cljs {:extra-paths ["test"]}
+  :lint {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2024.11.14"}}
+         :main-opts ["-m" "clj-kondo.main" "--lint" "src" "test"
+                     "--fail-level" "error"]}}}
