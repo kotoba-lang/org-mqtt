@@ -8,7 +8,7 @@
 ;; asserting rather than assuming holds all the way through composed
 ;; `bit-or`/`bit-shift-left` chains.
 ;;
-;;   nbb --classpath "$(clojure -A:cljs -Spath)" scripts/verify-cljs.cljs
+;;   nbb --classpath "$(clojure -A:cljs -Spath)" scripts/verify-cljs.cljk
 (ns verify-cljs
   (:require [clojure.test :as t]
             [mqtt.core-test]))
